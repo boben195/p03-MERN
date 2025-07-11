@@ -9,7 +9,16 @@ const createToken = (id) => {
 }
 
 const loginUser = async (req, res) => {
-    res.json({success: true, message: "Login IS GOOD"})
+    try {
+        const { email, password } = req.body
+        
+        const user = await userModel.findOne({ email })
+        if (!user) {
+            return res.json({success: false, message: "User is not found"})
+        }
+    } catch (error) {
+        
+    }
 
 }
 
