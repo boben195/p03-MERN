@@ -1,9 +1,12 @@
 import React from "react";
+import Login from "./Login";
+
+export const backendUrl = "http://localhost:4000";
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-green-300 text-6x1">TESSSSSSSSSST</h1>
+      <Login />
     </div>
   );
 };
