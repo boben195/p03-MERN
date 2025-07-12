@@ -2,6 +2,13 @@ import React, { useState } from "react";
 
 const Login = () => {
   const [curState, setCurState] = useState("Login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const formHandler = async (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form className="w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg space-y-6">
@@ -11,6 +18,8 @@ const Login = () => {
         {curState === "Login" ? null : (
           <input
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Name"
             required
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -18,12 +27,16 @@ const Login = () => {
         )}
         <input
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
