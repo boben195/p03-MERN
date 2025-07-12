@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import { ToastContainer } from "react-toastify";
+import Home from "./Home";
 
 export const backendUrl = "http://localhost:4000";
 
@@ -9,7 +10,11 @@ const App = () => {
   return (
     <div>
       <ToastContainer />
-      <Login setToken={setToken} />
+      {token === "" ? (
+        <Login setToken={setToken} />
+      ) : (
+        <Home setToken={setToken} />
+      )}
     </div>
   );
 };
