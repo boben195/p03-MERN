@@ -1,6 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { backendUrl } from "./App";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [curState, setCurState] = useState("Login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -8,6 +11,36 @@ const Login = () => {
 
   const formHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      if (curState === "SignUp") {
+        const responce = await axios.post(backendUrl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+        if (responce.data.success) {
+          setToken(responce.data.token);
+          toast.success(responce.data.message);
+        } else {
+          toast.error(responce.data.message);
+        }
+      } else {
+        const responce = await axios.post(backendUrl + "/api/user/login", {
+          email,
+          password,
+        });
+        if (responce.data.success) {
+          setToken(responce.data.token);
+          toast.success(responce.data.message);
+        } else {
+          toast.error(responce.data.message);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
