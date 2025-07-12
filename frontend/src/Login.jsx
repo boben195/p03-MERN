@@ -44,7 +44,10 @@ const Login = ({ setToken }) => {
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form className="w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg space-y-6">
+      <form
+        onSubmit={formHandler}
+        className="w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg space-y-6"
+      >
         <div className="text-center">
           <p className="text-2xl font-bold text-gray-800">{curState}</p>
         </div>
